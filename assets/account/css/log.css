@@ -1,0 +1,145 @@
+.body-log {
+    width: 100%;
+    position: relative;
+    height: 100vh;
+}
+
+.log__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white-colorText);
+    border-radius: 4px;
+    margin-top: 40px;
+    padding: 20px;
+    width: 50%;
+}
+
+.log__title {
+    width: 100%;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.log__bnt-submit {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.log__title h1 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1.4em;
+    /*text-transform: uppercase;*/
+    color: var(--border-color);
+}
+
+.log__form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.log__form-label {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.log__form-input {
+    border: 2px solid #ccc;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+.log__register {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.log__forget {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.log__form-input:focus {
+    border-color: #1497ff;
+    box-shadow: none;
+}
+
+.log__errors {
+    background-color: #FFF3CD;
+    border: 1px solid #FF7F7F;
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 1.2em;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.log__successfully {
+    background: #DDFFDD;
+    border: 1px solid #177117;
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 1.2em;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.text-muted {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.log__errors span {
+    color: #333;
+    font-size: 1.4rem;
+    line-height: 1.2em;
+    font-weight: 400;
+}
+
+.log__bnt-submit {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.log__login {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.log__title p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Mobile and tablet */
+
+@media (max-width: 1023px) {
+
+}
+
+
+/* Tablet */
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .log__wrapper {
+        width: 60%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    .log__wrapper {
+        width: 100%;
+    }
+
+}

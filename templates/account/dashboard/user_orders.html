@@ -1,0 +1,150 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block title %}
+    Đơn hàng đã thanh toán
+{% endblock %}
+{% block dashboard %}
+    sidebar__item-active
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block content %}
+
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <h1>Đơn đặt hàng</h1>
+                    <p>Danh sách <span>Các đơn đặt hàng đã thanh toán</span> của bạn</p>
+                </div>
+                <a class="btn btn-white btn-animate" href="{% url "account:user_not_orders" %}">Xem các đơn đặt hàng chờ
+                    thanh toán</a>
+                {% if messages %}
+                    <div class="log__alert-successfully" role="alert">
+                        {% for message in messages %}
+                            {{ message|safe }}
+                            <a href="{% url 'store:product_all' %}" class="alert-link">tại đây</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if orders|length == 0 %}
+                    <div class="row">
+                        <div class="col l-12 m-12 c-12">
+                            <p class="baket__none">Bạn không có đơn đặt hàng nào, mua thêm <a
+                                    href="{% url 'store:product_all' %}">tại
+                                đây</a></p>
+                        </div>
+                    </div>
+                {% else %}
+                    {% for order in orders %}
+                        <div class="basket__price-top">
+
+                            <div class="row">
+                                <div class="col l-6 m-6 c-12">
+                                    <div class="basket__select">
+                                        <p>| {{ order.created }} |</p>
+                                        <span>Vận chuyển đến <i class='bx bx-chevron-down'></i>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-menu__item">{{ order.full_name }}</li>
+                                            <li class="dropdown-menu__item">{{ order.address1 }}</li>
+                                            <li class="dropdown-menu__item">{{ order.address2 }}</li>
+                                            <li class="dropdown-menu__item">{{ order.post_code }}</li>
+                                        </ul>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="col l-6 m-6 c-12">
+                                    <div class="basket__total-price">
+                                        {% if order.payment_option == "Post-paid" %}
+                                            <p>Tổng tiền đơn hàng: <span
+                                                    id="basket-totalPrice__sub">{{ order.total_paid }} Đ</span>
+                                            </p>
+                                        {% else %}
+
+                                            <p>Tổng tiền đơn hàng: <span
+                                                    id="basket-totalPrice__sub">{{ order.total_paid }} $</span>
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="basket-wrapper">
+                            <div class="row">
+
+                                <div class="col l-8 m-12 c-12">
+                                    {% for item in order.items.all %}
+                                        <div class="basket__product">
+                                            <div class="row">
+                                                <div class="col l-4 m-4 c-12">
+                                                    <div class="basket__img">
+                                                        {% for image in item.product.product_image.all %}
+                                                            {% if image.is_feature %}
+                                                                <img src="{{ image.image.url }}"
+                                                                     alt="{{ image.image.alt_text }}"
+                                                                     class="section-product__header-img">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div class="col l-8 m-8 c-12">
+                                                    <div class="basket__info">
+                                                        <div class="basket__info-name">
+                                                            <a class="basket__info-link"
+                                                               href="{{ item.product.get_absolute_url }}">
+                                                                <p>{{ item.product|title }}</p></a>
+                                                        </div>
+                                                        <div class="basket__shell">
+                                                            <div class="basket__info-quantityArea">
+                                                                <label for="select">Số lượng:
+                                                                    <span style="font-weight: 600;">{{ item.quantity }}</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <p style="font-size: 1.2rem; margin-top: 6px;">Mã đơn hàng:
+                                                            <span style="font-size:1.2rem;font-weight:600; color:var(--border-color);"> {{ order.order_key }}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col l-4 m-12 c-12">
+                                    <div class="basket__checkout-btn">
+                                        {% if order.isRate %}
+                                            <div class="star-ratings-css">
+                                                <div class="star-ratings-css-top"
+                                                     style="width: {{ order.rating }}%">
+                                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                                </div>
+                                                <div class="star-ratings-css-bottom">
+                                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <a href="{% url 'account:rating' order.id %}"
+                                               class="basket__info-btn--save btn btn-white btn-animate">Để lại đánh
+                                                giá
+                                            </a>
+                                        {% endif %}
+                                        <a role="button" type="button" href="{% url 'account:val_order' order.id %}"
+                                           class="basket__info-btn--checkout btn btn-black btn-animate">Vấn đề đặt
+                                            hàng</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

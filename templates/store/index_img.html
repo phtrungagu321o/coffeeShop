@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+{% load static %}
+{% load social_share %}
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta name="author" content="Trung RUI">
+    <meta property="og:image" content="https://files.fm/thumb_show.php?i=hxfny9gh3"/>
+    <meta name="image" content="https://files.fm/thumb_show.php?i=hxfny9gh3">
+    <meta name="description"
+          content="Quán cà phê tại An Giang, không gian rộng rãi, nhiều dịch vụ vui chơi giải trí cùng với các đồ uống ngon, mát lanh!!">
+    <meta name="keywords"
+          content="cà phê trung hiếu, trung hiếu cà phê, trung hiếu coffee, coffee trung hiếu, trunghieucoffee, trunghieu, trung hiếu, coffeetrunghieu, thcoffee">
+    <meta name="title" content="Trung Hieu Coffee">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="vi_vn">
+    <meta property="fb:app_id" content="phung.mcdoin.988">
+    <meta property="og:image" content="https://files.fm/thumb_show.php?i=hxfny9gh3">
+    <meta property="og:image:alt" content="trunghieucoffee">
+    <meta property="og:title" content="trunghieuCoffee">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="trunghieu Coffee">
+    <meta property="og:url" content="http://caphetrunghieu.tf/">
+    <meta property="og:description"
+          content="Quán cà phê tại An Giang, không gian rộng rãi, nhiều dịch vụ vui chơi giải trí cùng với các đồ uống ngon, mát lanh!!">
+    <meta property="og:keywords"
+          content="cà phê trung hiếu, trung hiếu cà phê, trung hiếu coffee, coffee trung hiếu, trunghieucoffee, trunghieu, trung hiếu, coffeetrunghieu, thcoffee">
+    <meta property="article:publisher" content="https://www.facebook.com/phung.mcdoin.988">
+    <meta property="article:author" content="https://www.facebook.com/phung.mcdoin.988">
+    <meta property="article:published_time" content="2021-12-20 16:38:53">
+    <meta property="article:modified_time" content="2021-12-20 16:38:53">
+    <link rel="canonical" href="http://caphetrunghieu.tf/">
+    <link rel="alternate" href="http://caphetrunghieu.tf/" hreflang="vi-vn">
+    <!-- Twitter -->
+    <meta name="twitter:site" content="Cà phê Trung Hiếu">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="http://caphetrunghieu.cf/">
+    <meta name="twitter:title" content="Cà phê Trung Hiếu">
+    <meta name="twitter:description"
+          content="Quán cà phê tại An Giang, không gian rộng rãi, nhiều dịch vụ vui chơi giải trí cùng với các đồ uống ngon, mát lanh!!">
+    <meta name="twitter:keywords"
+          content="cà phê trung hiếu, trung hiếu cà phê, trung hiếu coffee, coffee trung hiếu, trunghieucoffee, trunghieu, trung hiếu, coffeetrunghieu, thcoffee">
+    <meta name="twitter:image" content="https://files.fm/thumb_show.php?i=hxfny9gh3">
+    <meta name="twitter:image:alt" content="Cà phê Trung Hiếu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <link rel="icon" href="{% static 'home\img\intro\coffee.png' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static './home/css/grid.css' %}">
+    <link rel="stylesheet" href="{% static './home/css/base.css' %}">
+    <link rel="stylesheet" href="{% static './home/css/main.css' %}">
+    <link rel="stylesheet" href="{% static './home/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static './store/css/base.css' %}">
+    <script src="{% static 'toast/js/main.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'toast/css/style.css' %}">
+    <title>Coffee Trung Hieu</title>
+</head>
+<body>
+<div class="wrap">
+    <div id="toast">
+    </div>
+    <div class="wrap__bg-full">
+        <img class="wrap__bg-full-img" src="{% static 'home/img/My Post.png' %}" alt="ảnh logo">
+    </div>
+    <header class="header" id="header">
+
+        <div class="header__wrap-video">
+            <video autoplay loop class="header__video-bg" id="video-bg" muted plays-inline>
+                <source src="{% static 'home/video/video_bg.mp4' %}" type="video/mp4">
+            </video>
+            <div class="wrapper-video">
+            </div>
+        </div>
+        <div id="sticky"></div>
+        <nav class="header__nav">
+
+            <div class="nav__logo">
+                <a href="/" class="nav__logo-link"><img
+                        src="{% static 'home/img/inline_logo-removebg-preview (1).png' %}" alt="logo background"
+                        class="nav__logo-img"></a>
+                <div class="sub-logo">
+                    <span class="logo-sub">App Trung Hiếu Coffee</span>
+                    <div class="app-link">
+                        <div class="app-link__wrap">
+                            <img src="{% static 'home/img/qrcode_2030762_ (1).png' %}" class="app-link__qr-img"
+                                 alt="qr img">
+                            <a href="https://drive.google.com/file/d/1CdscWxmZ91Fq-OIl37zurrwjLZyfc4EA/view?usp=sharing"><img
+                                    src="{% static 'home/img/google_drive_logo_39631.png' %}" class="app-link__link"
+                                    alt="gg drive img"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav__list">
+                <li title="Vỏ hàng của bạn" class="nav__item nav1">
+                    <a href="{% url 'basket:basket_summary' %}" class="nav__link"><i
+                            class='nav__link-basket bx bx-cart'>
+                        {% with total_qty=basket|length %}
+                            <span id="nav__link-quantity__num">
+                                {% if total_qty > 0 %}
+                                    {{ total_qty }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </span>
+                        {% endwith %}
+                    </i></a>
+                </li>
+                <li title="Tất cả sản phẩm" class="nav__item nav2">
+                    <a href="{% url 'store:product_all' %}" class="nav__link">Sản phẩm</a>
+
+                </li>
+                <li title="Liên hệ với chúng tôi" class="nav__item nav3">
+                    <a href="#section__contact" class="nav__link">Liên hệ</a>
+
+                </li>
+                <li title="Thông tin tài khoản" class="nav__item">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'account:dashboard' %}" class="nav__link-login">
+                            <div class="nav__acc">
+                                <i class="nav__icon fas fa-user-circle"></i>
+                                <p>Hi, </p>
+                                <span>{{ request.user.name }}</span>
+                            </div>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'account:dashboard' %}" class="nav__link">
+                            <div class="nav__acc">
+                                <i class="nav__icon fas fa-user-circle"></i>
+                                <span>Login</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                </li>
+
+                <!-- <li class="nav__item">
+                   <a href="#" class="btn btn-white btn-animate">Sign In</a>
+                </li> -->
+            </ul>
+        </nav>
+        <div class="header__content">
+            <div class="content__wapper-title">
+                <div class="content__logo">
+                    <img src="{% static 'home/img/bg-removebg-preview.png' %}" alt="logo coffee"
+                         class="content__logo-bg">
+                </div>
+                <div class="content__des">
+                    <!-- <h1 class="content__name-shop">Trung Hieu Coffee</h1> -->
+                    <div class="header__name">
+                        <img src="{% static 'home/img/My Post (1).png' %}" alt="ảnh tên quán" class="header__name-shop">
+
+                        <div class="header__socials">
+                            <div class="header__rating">
+                                <div title="Đánh giá của quán là {{ start }} ★" class="star-ratings-css">
+                                    <div class="star-ratings-css-top"
+                                         style="width: {{ width }}%">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <div class="star-ratings-css-bottom">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+
+                                </div>
+                                <span title="Lượt đánh giá là {{ count }}">({{ count }})</span>
+                            </div>
+                            <a title="Tìm kiếm bằng từ khóa" href="{% url 'store:index' %}" class="btn-flip"
+                               data-back="Tìm kiếm bằng từ khóa"
+                               data-front="Tìm kiếm bằng hình ảnh"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {#            <form class="content__form-find--img" action="{% url "store:search_img" %}" method="post"#}
+            {#                  enctype="multipart/form-data">#}
+            {#                {% csrf_token %}#}
+            {#                <div style="display: flex; justify-content: center; align-items: center">#}
+            {#                    <label class="label_img" for="image_File">Chọn ảnh để tải lên (PNG, JPG, ...) </label>#}
+            {#                    <input id="image_File" hidden type="file" name="imageFile" accept=".jpg, .jpeg, .png" multiple#}
+            {#                           data-max-file-size="3MB" data-max-files="1"/>#}
+            {#                </div>#}
+            {#                <button type="submit" name="submit" class="button" onclick="this.classList.toggle('button--loading')">#}
+            {#                    <span class="button__text">Tìm kiếm</span>#}
+            {#                </button>#}
+            {#            </form>#}
+            <form class="content__form-find--img" onSubmit="if(document.getElementById('file-upload').value == '') {location.reload(); return false;}" enctype="multipart/form-data" action="{% url "store:search_img" %}"
+                  method="POST">
+                {% csrf_token %}
+                <div title="Cần một hình ảnh về nước uống bạn cần tìm"
+                     style="display: flex; justify-content: center; align-items: center">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Chọn ảnh
+                    </label>
+                    <input id="file-upload" name='imageFile' type="file" style="display:none;"
+                           accept=".jpg, .jpeg, .png" multiple data-max-file-size="3MB" data-max-files="1"/>
+
+                </div>
+
+                <button title="Chờ đợi là hạnh phúc!!" type="submit" name="submit" class="button"
+                        onclick="this.classList.toggle('button--loading')">
+                    <span class="button__text">Tìm kiếm</span>
+                </button>
+            </form>
+            <script>
+                $('#file-upload').change(function () {
+                    var i = $(this).prev('label').clone();
+                    var file = $('#file-upload')[0].files[0].name;
+                    $(this).prev('label').text(file);
+                });
+            </script>
+        </div>
+        <div class="header__video-status-btn">
+            <!-- <a href="#" class="btn btn-white btn-animate" onclick="clickStatus()">Pause</a> -->
+            <button title="Dừng/phát video" id="status-Btn" class="btn btn-cf btn-animate" onclick="clickStatus()">
+                Pause
+            </button>
+        </div>
+    </header>
+
+    <div class="body">
+        <section title="Danh sách 6 món được quan tâm nhất của quán" id="section__product" class="section__product">
+            <div class="product__wrap-all">
+                <div class="grid wide">
+                    <div class="row title">
+                        <div class="col l-6 c-6">
+                            <h1 class="product__title">Menu</h1>
+                        </div>
+                    </div>
+                    {% if messages %}
+                        <div class="log__alert-successfully" role="alert">
+                            {% for message in messages %}
+                                {{ message|safe }}
+                                <a href="{% url 'account:wishlist' %}" class="alert-link">danh sách yêu thích của
+                                    bạn</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        {#                        {% for p in products %}#}
+                        {#                            {% for img in p.product_image.all %}#}
+                        {#                                {% if img.is_feature %}#}
+                        {#                                    <div class="col l-4 l-o-0 m-6 m-o-0 c-10 c-o-1">#}
+                        {#                                        <div class="product__wrapper">#}
+                        {#                                            <div class="product__shell">#}
+                        {#                                                <div class="product__wrapper-header">#}
+                        {#                                                    <a href="{{ p.category.get_absolute_url }}"><img#}
+                        {#                                                            src="{{ img.image.url }}" alt=""#}
+                        {#                                                            class="product__wrapper-img"></a>#}
+                        {#                                                </div>#}
+                        {#                                                <div class="product__wrapper-body">#}
+                        {#                                                    <p class="product__wrapper-name">{{ p.title }}</p>#}
+                        {#                                                    <p class="product__wrapper-price">{{ p.regular_price }} Đ</p>#}
+                        {#                                                </div>#}
+                        {#                                                {% for product in wishlist %}#}
+                        {#                                                    {% if p.id == product.id %}#}
+                        {#                                                        <div class="section-product__favorite">#}
+                        {#                                                            <i class='bx bx-check'></i>#}
+                        {#                                                            <span>Yêu thích</span>#}
+                        {#                                                        </div>#}
+                        {#                                                    {% endif %}#}
+                        {#                                                {% endfor %}#}
+                        {#                                                <span class="section-product__new">New</span>#}
+                        {#                                                <div class="product__wrapper-footer">#}
+                        {#                                                    <a href="{{ p.get_absolute_url }}"#}
+                        {#                                                       class="btn btn-white btn-animate">Mua ngay</a>#}
+                        {#                                                </div>#}
+                        {#                                            </div>#}
+                        {#                                        </div>#}
+                        {#                                    </div>#}
+                        {#                                {% endif %}#}
+                        {#                            {% endfor %}#}
+                        {#                        {% endfor %}#}
+                        {% for p in products %}
+                            {% for img in p.product_image.all %}
+                                {% if img.is_feature %}
+                                    <div class="col l-4 l-o-0 m-6 m-o-0 c-10 c-o-1">
+                                        <div class="product__wrapper">
+                                            <div class="card">
+                                                <div class="imgBox">
+                                                    <a style="text-decoration: none;"
+                                                       href="{{ p.get_absolute_url }}">
+                                                        <img title="Hình ảnh của sản phẩm" src="{{ img.image.url }}"
+                                                             alt="products" class="mouse">
+                                                    </a>
+                                                </div>
+                                                <div class="card-fav">
+                                                    <div title="Số lượng món cần mua"
+                                                         class="basic__numArea-quantity">
+                                                        <label for="select{{ p.id }}">Số lượng</label>
+                                                        <select id="select{{ p.id }}">
+                                                            {% for item in basket %}
+                                                                {% if item.product == p %}
+                                                                    <option hidden
+                                                                            selected>{{ item.qty }}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
+                                                    </div>
+                                                    {% post_to_facebook p.get_absolute_url "<i title='Chia sẻ thông tin sản phẩm qua Facebook' class='card-fav__share bx bx-share-alt'></i>" %}
+                                                    {% if p in wishlist %}
+                                                        <a title="Xóa khỏi danh sách yêu thích của bạn"
+                                                           href="{% url 'account:user_wishlist' p.id %}"><i
+                                                                class='card-fav__liked bx bxs-heart'></i></a>
+                                                    {% else %}
+                                                        <a title="Thêm vào danh sách yêu thích của bạn"
+                                                           href="{% url 'account:user_wishlist' p.id %}"><i
+                                                                class='card-fav__like bx bx-heart'></i></a>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="contentBox">
+                                                    <h3 title="Tên sản phẩm">{{ p.title }}</h3>
+                                                    <h2 title="Giá sản phẩm"
+                                                        class="price">{{ p.regular_price }}<small>VND
+                                                        {% for item in basket %}
+                                                            {% if item.product == p %}
+                                                                <span title="Số lượng của món bạn đã đặt"
+                                                                      id="price_quantity{{ p.id }}"
+                                                                      class="price_quantity">
+                                                                        x{{ item.qty }}
+                                                        </span>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </small>
+                                                    </h2>
+                                                    <button title="Đợi gì nữa!!!!! BẤM ĐI ^^"
+                                                            onclick="showSuccessToastAddProDuct()" type="button"
+                                                            id="add-button{{ p.id }}"
+                                                            value='{{ p.id }}'
+                                                            class="buy btn btn-white btn-animate">Mua Ngay
+                                                    </button>
+                                                    <script>
+                                                        function showSuccessToastAddProDuct() {
+                                                            toast({
+                                                                title: 'Thêm thành công',
+                                                                message: 'Sản phẩm đã được thêm vào <a style="font-size: 2rem; line-height: 1.2em;" href="{% url 'basket:basket_summary' %}">vỏ hàng</a> của bạn, mua tiếp <a style="font-size: 2rem; line-height: 1.2em;" href="{% url 'store:product_all' %}">tại đây</a>',
+                                                                type: 'success',
+                                                                duration: 5000
+                                                            })
+                                                        }
+
+                                                        $(document).on('click', '#add-button{{ p.id }}', function (e) {
+                                                            e.preventDefault();
+                                                            $.ajax({
+                                                                type: 'POST',
+                                                                url: '{% url "basket:basket_add" %}',
+                                                                data: {
+                                                                    productid: $('#add-button{{ p.id }}').val(),
+                                                                    productqty: $('#select{{ p.id }} option:selected').text(),
+                                                                    csrfmiddlewaretoken: "{{csrf_token}}",
+                                                                    action: 'post'
+                                                                },
+                                                                success: function (json) {
+                                                                    if (json.reload == 1)
+                                                                        location.reload();
+                                                                    document.getElementById('nav__link-quantity__num').innerHTML = json.qty
+                                                                    document.getElementById('mobile_cart-quantity__num').innerHTML = json.qty
+                                                                    document.getElementById('price_quantity{{ p.id }}').innerHTML = "x" + json.product_qty
+                                                                },
+                                                                error: function (xhr, errmsg, err) {
+
+                                                                }
+                                                            });
+                                                        })
+                                                    </script>
+                                                    {#                                                    <a href="{{ p.get_absolute_url }}"#}
+                                                    {#                                                       class="buy btn btn-white btn-animate">Mua</a>#}
+                                                </div>
+                                                {% if p in wishlist %}
+                                                    <div title="Sản phẩm này nằm trong danh sách yêu thích của bạn"
+                                                         class="section-product__favorite-ss">
+                                                        <i class='bx bx-check'></i>
+                                                        <span>Yêu thích</span>
+                                                    </div>
+                                                {% endif %}
+                                                <span class="section-product__new">New</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% endfor %}
+                    </div>
+                    <div class="product__all">
+                        <a title="Xem tất cả sản phẩm có trong shop" href="{% url 'store:product_all' %}"
+                           class="product__all-btn btn btn-black btn-animate">Xem tất cả sản phẩm</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section title="Danh mục dịch vụ của quán" class="section__service" id="section__service">
+            <div class="circle"></div>
+            <div class="grid wide">
+                <div class="section__service-container">
+                    <div class="product__title-service">
+                        <h1 class="product__title">Dịch Vụ</h1>
+                    </div>
+                    <div class="container__content">
+                        <div class="container__content-texBox">
+                            <h2 id="container__content-texBox--title" class="container__content-texBox--title">Bida</h2>
+                            <p id="container__content-texBox--text" class="container__content-texBox--text">Cung cấp
+                                dịch vụ giải trí Bida đáp ứng mọi tiêu chuẩn để phục vụ moi trường giải trí, bàn tốt
+                                nhập khẩu nguyên mẫu, bi viên xịn xò, cơ chuyên nghiệp chất lượng, Hãy đến ngay với Quán
+                                Trung Hiếu Coffee để trải nghiệm dịch vụ, giá chỉ từ 20,000 VNĐ / 1 giờ</p>
+                        </div>
+                        <div title="Ảnh minh họa" class="container__content-imgBox">
+                            <img src="{% static 'home/img/thumnail/bida-removebg-preview (1).png' %}"
+                                 class="imgBox__image" alt="">
+                        </div>
+                    </div>
+                    <ul class="container__thumb-list">
+                        <li title="Bida" class="container__thumb-item"><img class="container__thumb-img"
+                                                                            onclick="imgSlider('{% static 'home/img/thumnail/bida-removebg-preview (1).png' %}'); changeCircleColor('#1C7FA6')
+                                                                                    changeText('Bida','Cung cấp dịch vụ giải trí Bida đáp ứng mọi tiêu chuẩn để phục vụ moi trường giải trí, bàn tốt nhập khẩu nguyên mẫu, bi viên xịn xò, cơ chuyên nghiệp chất lượng, Hãy đến ngay với Quán Trung Hiếu Coffee để trải nghiệm dịch vụ, giá chỉ từ 20,000 VNĐ / 1 giờ', '#1C7FA6')
+                                                                                    "
+                                                                            src="{% static 'home/img/img-bida-icon-removebg-preview.png' %}"
+                                                                            alt=""></li>
+                        <li title="Trực tiếp bóng đá" class="container__thumb-item"><img class="container__thumb-img"
+                                                                                         onclick="imgSlider('{% static 'home/img/thumnail/may-chieu-xem-bong-da-removebg-removebg-preview.png' %}'); changeCircleColor('#A6BF4B')
+                                                                                                 changeText('Trực tiếp bóng đá','Quán Trung Hiếu Coffee cung cấp dịch trực tiếp bóng đá hoàn toàn miễn phi với các trận đấu đỉnh kout được cập nhập liên tục thường xuyên', '#A6BF4B')
+                                                                                                 "
+                                                                                         src="{% static 'home/img/img-live-icon-removebg-preview.png' %}"
+                                                                                         alt=""></li>
+                        <!-- <li class="container__thumb-item"><img class="container__thumb-img" onclick="imgSlider('./img/thumnail/img3.png'); changeCircleColor('blue')
+                            changeText('Trực tiếp','Trực tiếp ne ban gi oi')
+                            " src="./img/thumnail/thumb3.png" alt=""></li> -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section title="Liên lạc cho chúng tôi về vấn đề của bạn" class="section__contact" id="section__contact">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-6 l-o-0 m-12 m-o-0 c-10 c-o-1">
+                        <h1 class="product__title">Liên hệ</h1>
+                    </div>
+                </div>
+                <div class="section__contact-container">
+                    <div class="row section__contact-row">
+                        <div class="col l-6 l-o-0 m-12 m-o-0 c-10 c-o-1">
+                            <div class="section__contact-Info">
+                                <div title="Địa chỉ quán" class="section__contact-box">
+                                    <div class="section__contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="section__contact-text">
+                                        <h3 class="section__contact-address">Đia chỉ</h3>
+                                        <p class="section__contact-content">
+                                            Thạnh Mỹ Tây - Châu phú - An Giang
+                                        </p>
+                                    </div>
+                                </div>
+                                <div title="Số điện thoại của quán" class="section__contact-box">
+                                    <div class="section__contact-icon">
+                                        <i class="fas fa-phone-square-alt"></i>
+                                    </div>
+                                    <div class="section__contact-text">
+                                        <h3 class="section__contact-address">Số điện thoại</h3>
+                                        <p class="section__contact-content">
+                                            0969037875
+                                        </p>
+                                    </div>
+                                </div>
+                                <div title="Email liên hệ của quán" class="section__contact-box">
+                                    <div class="section__contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="section__contact-text">
+                                        <h3 class="section__contact-address">Email</h3>
+                                        <p class="section__contact-content">
+                                            trunghieucoffee321o@gmail.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l-6 l-o-0 m-12 m-o-0 c-10 c-o-1">
+                            <div class="section__contact-form">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <h2 class="section__contact-form--title">Đặt vấn đề</h2>
+                                    {#                                    <label class="section__contact-form--inputTitle">FullName</label>#}
+                                    {#                                    <input type="text" required="required" class="section__contact-form--input">#}
+                                    {#                                    <label class="section__contact-form--inputTitle">Email</label>#}
+                                    {#                                    <input type="text" required="required" class="section__contact-form--input">#}
+                                    {#                                    <label class="section__contact-form--inputTitle">Type your message ... </label>#}
+                                    {#                                    <textarea required="required" class="section__contact-form--area"></textarea>#}
+
+                                    {{ form }}
+                                    <div class="section__contact-form--inputBox">
+                                        <input type="submit" class="btn-submit btn btn-white btn-animate">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__socials">
+                <ul class="footer__socials--list-icon">
+                    <li title="loading ..." class="footer__socials--item-icon">
+                        <a href="" class="footer__socials--link-icon"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li title="loading ..." class="footer__socials--item-icon">
+                        <a href="" class="footer__socials--link-icon"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li title="loading ..." class="footer__socials--item-icon">
+                        <a href="" class="footer__socials--link-icon"><i class="fab fa-google-drive"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__nav">
+                <ul class="footer__nav--list">
+                    <li title="Trở lại đầu trang" class="footer__nav--item">
+                        <a href="#header" class="footer__nav--link">Trang chủ</a>
+                    </li>
+                    <li title="Trở lại phần Menu" class="footer__nav--item">
+                        <a href="#section__product" class="footer__nav--link">Sản phẩm</a>
+                    </li>
+                    <li title="Trở lại phần dịch vụ" class="footer__nav--item">
+                        <a href="#section__service" class="footer__nav--link">Dịch vụ</a>
+                    </li>
+                    <li title="Trở lại phần liên hệ" class="footer__nav--item">
+                        <a href="#section__contact" class="footer__nav--link">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__label">
+                <p class="footer__label--text">Bản quyền thuộc về Trung R.U.I &#169; 2022</p>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="space"></div>
+<nav class="nav_bottom">
+    <a title="Trang chủ" href="{% url 'store:index' %}" class="nav_bottom__link nav_bottom__link--active">
+        <i class='nav_bottom__icon logo-home bx bx-home'></i>
+    </a>
+    <div title="Sản phẩm" class="nav_bottom__link {% block product_mobile %} {% endblock %}">
+        <i class='nav_bottom__icon bx bx-coffee'></i>
+        <ul class="nav_bottom__category--list">
+            <li class="nav_bottom__category--item">
+                <a href="{% url 'store:product_all' %}" class="nav_bottom__category-link">Tất cả</a>
+            </li>
+            {% for category in categories %}
+                <li class="nav_bottom__category--item">
+                    <a href="{{ category.get_absolute_url }}"
+                       class="nav_bottom__category-link">{{ category.name|title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div title="Tìm kiếm" class="nav_bottom__link">
+        <i class='nav_bottom__icon bx bx-search'></i>
+        <form name="nav-bottom__form-find" method="POST" action="{% url 'store:search' %}"
+              class="nav-bottom__form-find"
+              content='text/html; charset=UTF-8'>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="&#x270e; Nhập từ khóa cần tìm"
+                   class="nav-bottom__input-form-find"/>
+            <button type="submit" class="nav-bottom__btn-find"><i class='bx bx-search-alt-2'></i></button>
+        </form>
+    </div>
+    <a title="Vỏ hàng" href="{% url 'basket:basket_summary' %}"
+       class="nav_bottom__link {% block basket_mobile %}{% endblock %}">
+        <i class='nav_bottom__icon cart-quantity bx bx-cart'></i>
+        <div class="nav_bottom-basket">
+            {% with total_qty=basket|length %}
+                <span id="mobile_cart-quantity__num">
+                            {% if total_qty > 0 %}
+                                {{ total_qty }}
+                            {% else %}
+                                0
+                            {% endif %}
+                    </span>
+            {% endwith %}
+        </div>
+    </a>
+    <div title="Tài khoản cá nhân" class="nav_bottom__link">
+        <i class='nav_bottom__icon bx bxs-user-account'></i>
+        <ul class="nav_bottom-acc__list">
+            <li class="nav_bottom-acc__item">
+                <a href="{% url 'account:dashboard' %}" class="nav_bottom-acc__link">Tài
+                    khoản {{ request.user.name }}</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav_bottom-acc__item">
+                    <a href="{% url 'account:logout' %}" class="nav_bottom-acc__link">Đăng xuất</a>
+                </li>
+            {% else %}
+                <li class="nav_bottom-acc__item">
+                    <a href="{% url 'account:login' %}" class="nav_bottom-acc__link"> Đăng nhập</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<script src="{% static 'home/js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block title %}Chỉnh sửa địa chỉ{% endblock %}
+{% block stylesheet %}
+    {% static 'account/css/addresses.css' %}
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+
+{% block content %}
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <h1>Chỉnh sửa địa chỉ</h1>
+                    <p>Quản lí các <span>Địa chỉ</span> và <span>Đặt mặc định địa chỉ</span> cho bạn</p>
+                </div>
+                {% if messages %}
+                    <div class="log__alert-successfully" role="alert">
+                        {% for message in messages %}
+                            {{ message|safe }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col l-4 m-6 c-12">
+                        <a href="{% url 'account:add_address' %}" class="addresses__wrapper" role="button">
+                            <div class="addresses__add">
+                                <p>+</p>
+                                <span>Thêm địa chỉ</span>
+                            </div>
+                        </a>
+                    </div>
+                    {% for address in addresses %}
+                        <div class="col l-4 m-6 c-12">
+                            <div class="addresses__wrapper set">
+                                <div class="addresses__body">
+                                    <p class="addresses__body-header">
+                                        {% if address.default %}
+                                            Mặc định
+                                        {% endif %}
+                                        &nbsp;
+                                    </p>
+                                    <ul class="addresses__body-list">
+                                        <li class="addresses__body-item">
+                                            <span>Tên đầy đủ: </span>{{ address.full_name }}</li>
+                                        <li class="addresses__body-item">
+                                            <span>Địa chỉ 1: </span>{{ address.address_line }}</li>
+                                        <li class="addresses__body-item">
+                                            <span>Địa chỉ 2: </span>{{ address.address_line2 }}</li>
+                                        <li class="addresses__body-item"><span>Nhận dạng: </span>{{ address.town_city }}
+                                        </li>
+                                        <li class="addresses__body-item"><span>Mã bưu điện </span>{{ address.postcode }}
+                                        </li>
+                                        <li class="addresses__body-item">
+                                            <span>Số điện thoại: </span> {{ address.phone }}</li>
+                                    </ul>
+                                    <div class="addresses__body-footer">
+                                        <a href="{% url 'account:edit_address' address.id %}">Chỉnh
+                                            sửa</a><span>|</span>
+                                        <a href="{% url 'account:delete_address' address.id %}">Xóa</a><span>|</span>
+                                        {% if not address.default %}
+                                            <a href="{% url 'account:set_default' address.id %}"
+                                               class="text-decoration-none">Mặc định</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

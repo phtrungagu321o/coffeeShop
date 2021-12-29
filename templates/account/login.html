@@ -1,0 +1,45 @@
+{% extends "product_base.html" %}
+{% load  static %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block title %} Đăng nhập {% endblock %}
+{% block stylesheet %}
+    {% static 'account/css/log.css' %}
+{% endblock %}
+{% block content %}
+    <div class="body-log">
+        <div class="log__wrapper">
+            <div class="log__title">
+                <h1>Đăng nhập</h1>
+            </div>
+            <form action="." method="post" class="log__form">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="log__errors" role="alert">
+                        Lỗi: <span>Tên người dùng hoặc mật khẩu không đúng!</span>
+                    </div>
+                {% endif %}
+                <label for="log-username" class="log__form-label">{{ form.username.label }}</label>
+                {{ form.username }}
+                <label for="login-pwd" class="log__form-label">{{ form.password.label }}</label>
+                {{ form.password }}
+
+                <div class="log__btn">
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <button class="log__bnt-submit btn btn-white btn-animate" type="submit"
+                            value="Log-in">Đăng nhập
+                    </button>
+                </div>
+                <p class="log__register">
+                    <a href="{% url "account:register" %}">Tạo một tài khoản?</a>
+                </p>
+
+                <p class="log__forget">
+                    <a href="{% url "account:pwdreset" %}">Quên mật khẩu?</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,229 @@
+/* Mobile and tablet */
+
+@media (max-width: 1023px) {
+    #myImg {
+        display: block;
+    }
+    .section-product__title span{
+        top: 49px;
+        right: 0;
+    }
+
+    .container-img {
+        display: none;
+    }
+
+    .section-product__title span, .section-product__title-text {
+        font-size: 1.8rem;
+    }
+
+    .section-product__title-thump {
+        top: -120px;
+        left: 55px;
+    }
+
+    .btn-flip {
+        width: 100%;
+    }
+
+    #add-button {
+        display: none;
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+
+    .product__wrapper {
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .container__right-btn {
+        margin-left: 0;
+    }
+
+    #add-like {
+        width: 100%;
+    }
+
+    .detail-right__btn-group {
+        width: 100%;
+    }
+
+    /*.sidebar.active ~ .body,*/
+    /*.sidebar.active ~ .banner {*/
+    /*    width: calc(100% - 78px);*/
+    /*    left: 78px;*/
+    /*}*/
+    .sidebar.active ~ .body, .sidebar.active ~ .banner {
+        width: 100%;
+    }
+
+    .banner__title {
+        font-size: 3.2rem;
+    }
+
+    .body {
+        position: static;
+        width: 100%;
+    }
+
+    .sidebar ~ .banner {
+        position: static;
+    }
+
+    .nav_bottom {
+        display: flex;
+    }
+
+    .footer {
+        display: block;
+    }
+
+    .basket-wrapper {
+        padding-bottom: 10px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .body {
+        padding: 0 20px;
+    }
+
+    .none-basket__img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .basket-description__content {
+        padding: 0;
+
+    }
+
+    .basket-description {
+        width: 70%;
+    }
+
+    .basket-shell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .basket-description__content-quantityArea {
+        padding: 10px 10px;
+    }
+
+    .basket-description__content-btn {
+        margin-left: 10px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 1.3rem;
+    }
+
+    .basket-description__content-price span {
+        font-size: 2rem;
+    }
+
+    .basket-description__content-priceName {
+        font-size: 1.6rem;
+    }
+}
+
+/* Tablet */
+
+@media (min-width: 740px) and (max-width: 1023px) {
+
+
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    /*.sidebar.active ~ .banner {*/
+    /*    width: calc(100% - 78px);*/
+    /*    left: 78px;*/
+    /*}*/
+    /*.sidebar__category::after,*/
+    /*.sidebar__category::before {*/
+    /*    display: none;*/
+    /*}*/
+    /*.sidebar__category {*/
+    /*    top: 100%;*/
+    /*    left: 0;*/
+    /*    width: 100%;*/
+    /*    animation: pushOn linear .2s;*/
+    /*}*/
+    @keyframes pushOn {
+        from {
+            opacity: 0;
+            transform: translateY(20%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .basket-description {
+        width: 100%;
+    }
+
+    .basket-description__content-priceArea {
+        padding: 10px 10px;
+    }
+
+    .basket-description__content-priceName {
+        font-size: 1.6rem;
+    }
+
+    .basket-description__content-quantityArea {
+        flex-direction: column;
+    }
+
+    .basket-description__content-btn {
+        margin: 6px 0;
+        padding: 20px 50px;
+    }
+
+    .basket-description__content-quantityArea label {
+        margin-bottom: 4px;
+    }
+
+    .basket-description__content-quantityArea #select {
+        width: 50px;
+        height: 40px;
+        margin: 0 0 6px 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .basket-description__content-priceArea {
+        flex-direction: column;
+    }
+
+    .basket-description__content-priceName {
+        font-size: 1.6rem;
+    }
+
+    .basket-description__product {
+        padding: 0 10px;
+    }
+
+    .basket-description__product p {
+        font-size: 2rem;
+        height: 50px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+
+    }
+
+
+}

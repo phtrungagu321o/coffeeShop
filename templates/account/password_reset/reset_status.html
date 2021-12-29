@@ -1,0 +1,49 @@
+{% extends "product_base.html" %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block title %}Đặt lại thành công{% endblock %}
+{% block content %}
+
+    <style>
+        .status__wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .title-status {
+            font-size: 2.6rem;
+            font-weight: bold;
+            color: var(--border-color);
+            line-height: 1.6em;
+            text-align: center;
+        }
+
+        .title-status__text {
+            font-size: 1.6rem;
+            color: #333;
+            line-height: 1.6em;
+            text-align: center;
+        }
+
+        .title-status__link {
+            font-size: 1.6rem;
+            text-align: center;
+            width: 100%;
+            display: block;
+            line-height: 1.4em;
+        }
+    </style>
+
+    <div class="status__wrapper">
+        {% if 'email' in request.get_full_path %}
+            <h3 class="title-status">Đặt lại mật khẩu thành công</h3>
+            <p class="title-status__text">Kiểm tra email của bạn để biết hướng dẫn</p>
+        {% endif %}
+        {% if 'complete' in request.get_full_path %}
+            <h3 class="title-status">Đặt lại mật khẩu thành công</h3>
+            <a class="title-status__link" href="{% url "account:login" %}">Đăng nhập</a>
+        {% endif %}
+    </div>
+
+{% endblock %}

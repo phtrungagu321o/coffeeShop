@@ -1,0 +1,46 @@
+{% extends "product_base.html" %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block title %}Đặt món thành công{% endblock %}
+{% block content %}
+
+    <style>
+        .status__wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .title-status {
+            font-size: 2.6rem;
+            font-weight: bold;
+            color: var(--border-color);
+            line-height: 1.6em;
+            text-align: center;
+        }
+
+        .title-status__text {
+            font-size: 1.6rem;
+            color: #333;
+            line-height: 1.6em;
+            text-align: center;
+        }
+
+        .title-status__link {
+            font-size: 1.6rem;
+            text-align: center;
+            display: block;
+            width: 100%;
+            line-height: 1.4em;
+            margin: 20px auto;
+        }
+    </style>
+
+    <div class="status__wrapper">
+        <h3 class="title-status">Đặt lại món thành công</h3>
+        <p class="title-status__text">Đơn hàng của bạn đơn chờ duyệt trong vòng ít phút</p>
+        <p class="title-status__text">Liên hệ số <a style="color: var(--border-color); font-size: 2rem" href="tel:+84969037875">0969097875</a> để được thông báo sớm nhất</p>
+        <a class="title-status__link btn btn-white btn-animate" href="{% url "store:product_all" %}">Mua tiếp</a>
+    </div>
+
+{% endblock %}

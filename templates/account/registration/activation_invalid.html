@@ -1,0 +1,37 @@
+{% extends "product_base.html" %}
+{% block title %}Email tài khoản đã được gửi{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+
+{% block content %}
+   <style>
+        .status__wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .title-status {
+            font-size: 2.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            line-height: 1.6em;
+            text-align: center;
+        }
+
+        .title-status__text {
+            font-size: 1.6rem;
+            color: #333;
+            line-height: 1.6em;
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="status__wrapper">
+            <h3 class="title-status">Lỗi</h3>
+            <p class="title-status__text">Vui lòng liên hệ <a href="#">tại đây</a> để được hỗ trợ </p>
+    </div>
+    
+
+{% endblock %}

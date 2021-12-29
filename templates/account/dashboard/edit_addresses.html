@@ -1,0 +1,87 @@
+{% extends "product_base.html" %}
+{% block title %}Chỉnh sửa địa chỉ{% endblock %}
+{% load static %}
+{% block dashboard %}
+    sidebar__item-active
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block stylesheet %}
+    {% static 'account/css/log.css' %}
+{% endblock %}
+{% block content %}
+    <style>
+        .log__wrapper{
+            margin-top: 40px;
+        }
+        .log__title::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 3px;
+            width: 60px;
+            background-color: var(--primary-color);
+        }
+    </style>
+    <div class="body-log">
+        <div class="log__wrapper">
+            <div class="log__title">
+                <h1>{{ edit }}</h1>
+                <p>Thêm một địa chỉ mời và chỉnh sửa địa chỉ của bạn</p>
+            </div>
+            <form name="log__form" action="." method="post" class="log__form">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <p>Xin vui lòng sửa những lỗi sau:</p>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="log__errors" role="alert">
+                                {{ field.label }}: {{ field.errors|striptags }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <label for="register-username" class="log__form-label">{{ form.full_name.label }}<span
+                        class="text-muted">
+                                          (Yêu cầu)</span></label>
+                {{ form.full_name }}
+                <label for="register-username" class="log__form-label">{{ form.phone.label }}<span
+                        class="text-muted">
+                                      (Yêu cầu)</span></label>
+                {{ form.phone }}
+
+                <label for="register-pwd" class="log__form-label">{{ form.address_line.label }}
+                    <span
+                            class="text-muted">
+                                       (Yêu cầu)</span></label>
+                {{ form.address_line }}
+                <label for="register-pwd2" class="log__form-label">{{ form.address_line2.label }}</label>
+                {{ form.address_line2 }}
+
+                <label for="register-pwd2" class="log__form-label">{{ form.town_city.label}}</label>
+                {{ form.town_city }}
+
+                <label for="register-pwd2" class="log__form-label">{{ form.postcode.label}}</label>
+                {{ form.postcode }}
+
+                <div class="log__btn">
+                    <button class="log__bnt-submit btn btn-white btn-animate" onclick="submitForm()" type="button" value="Submit"
+                    >{{ edit }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            var form = document.getElementsByName('log__form')[0];
+            form.submit(); // Submit the form
+            form.reset();  // Reset all form data
+            return false; // Prevent page refresh
+        }
+    </script>
+{% endblock %}

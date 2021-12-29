@@ -1,0 +1,111 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block title %}Lựa chọn phương thanh thanh toán{% endblock %}
+{% block content %}
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <h1>Tùy chọn giao hàng</h1>
+                    <p>Vui lòng chọn <span>Phương thức giao hàng</span> của bạn</p>
+                </div>
+                <div class="row">
+                    <div class="col l-7 m-12 c-12">
+                        <div id="paypal-button-container"></div>
+                        <a href="{% url 'checkout:post_paid' %}" class="postpaid-button-container"><p>Thanh toán khi
+                            nhận hàng</p></a>
+                    </div>
+                    <div class="col l-5 m-12 c-12">
+                        <div class="delivery_right-wrapper">
+                            <div class="delivery_right-highlight">
+                                <div class="delivery_right-highlight-sub">Tổng tiền phụ:</div>
+                                <div class="delivery_right-highlight-text"><span
+                                        id="sub_total">{{ basket.get_subtotal_price }}</span><span> Đ</span>
+                                </div>
+                            </div>
+                            <div class="delivery_right-highlight">
+                                <div class="delivery_right-highlight-sub">Chi phí giao hàng:</div>
+                                <div class="delivery_right-highlight-text"><span
+                                        id="delivery_price">{{ basket.get_delivery_price }}</span><span> Đ</span>
+                                </div>
+                            </div>
+                            <div class="delivery_right-highlight">
+                                <div class="delivery_right-highlight-sub">Tổng tiền:</div>
+                                <div class="delivery_right-highlight-text"><span
+                                        id="total">{{ basket.get_total_price }}</span><span> Đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=Adl9_10CxHDSL-VZobkyiOhy49BTN2TvqnvCkSiVcz7hHcxVtiemh1EyOSkRQCBWfgRco8cvDUD9caJK&currency=USD"
+            data-sdk-integration-source="button-factory">
+    </script>
+    <script>
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+
+        function initPayPalButton() {
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
+
+                },
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            "amount": {
+                                "currency_code": "USD",
+                                "value": '{{basket.price_convert_vnd|floatformat:2}}'
+                            }
+                        }]
+                    });
+                },
+                onApprove: function (data) {
+                    var url = "{% url 'checkout:payment_complete' %}"
+                    return fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            'X-CSRFToken': csrftoken,
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    }).then(function () {
+                        location.href = '{% url 'checkout:payment_successful' %}';
+                    })
+                },
+            }).render('#paypal-button-container');
+        }
+
+        initPayPalButton();
+
+    </script>
+
+{% endblock %}

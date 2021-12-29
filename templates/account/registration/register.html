@@ -1,0 +1,76 @@
+{% extends "product_base.html" %}
+{% block title %}
+    Đăng kí
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% load static %}
+
+{% block stylesheet %}
+    {% static 'account/css/log.css' %}
+{% endblock %}
+
+{% block content %}
+    <style>
+        .log__title::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 3px;
+            width: 60px;
+            background-color: var(--primary-color);
+        }
+    </style>
+    <div class="body-log">
+        <div class="log__wrapper">
+            <div class="log__title">
+                <h1>Đăng kí</h1>
+                <p>Nó miễn phí và chỉ mất một phút.</p>
+            </div>
+            <form action="." method="post" class="log__form">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <p>Xin vui lòng sửa những lỗi sau:</p>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="log__errors" role="alert">
+                                {{ field.label }}: {{ field.errors|striptags }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <label for="register-username" class="log__form-label">{{ form.user_name.label }}<span
+                        class="text-muted">
+                                          (Yêu cầu)</span></label>
+                {{ form.user_name }}
+                <label for="register-username" class="log__form-label">{{ form.email.label }}<span
+                        class="text-muted">
+                                      (Yêu cầu)</span></label>
+                {{ form.email }}
+
+                <label for="register-pwd" class="log__form-label">{{ form.password.label }}<small
+                        class="text-muted">
+                    Ít nhất 8 ký tự và 1 chữ số
+                </small></label>
+                {{ form.password }}
+                <label for="register-pwd2" class="log__form-label">{{ form.password2.label }}<span
+                        class="text-muted">
+                                       (Yêu cầu)</span></label>
+                {{ form.password2 }}
+
+                <div class="log__btn">
+                    <button class="log__bnt-submit btn btn-white btn-animate" type="submit"
+                    >Đăng kí
+                    </button>
+                </div>
+                <p class="log__login">
+                    <a href="{% url "account:login" %}">Đã có tài khoản, Đăng nhập?</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

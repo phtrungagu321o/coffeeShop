@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+{% load static %}
+{% load social_share %}
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta name="author" content="Trung RUI">
+    <meta property="og:image" content="https://files.fm/thumb_show.php?i=hxfny9gh3"/>
+    <meta name="image" content="https://files.fm/thumb_show.php?i=hxfny9gh3">
+    <meta name="description"
+          content="Quán cà phê tại An Giang, không gian rộng rãi, nhiều dịch vụ vui chơi giải trí cùng với các đồ uống ngon, mát lanh!!">
+    <meta name="keywords"
+          content="cà phê trung hiếu, trung hiếu cà phê, trung hiếu coffee, coffee trung hiếu, trunghieucoffee, trunghieu, trung hiếu, coffeetrunghieu, thcoffee">
+    <meta name="title" content="Trung Hieu Coffee">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="vi_vn">
+    <meta property="fb:app_id" content="phung.mcdoin.988">
+    <meta property="og:image" content="https://files.fm/thumb_show.php?i=hxfny9gh3">
+    <meta property="og:image:alt" content="trunghieucoffee">
+    <meta property="og:title" content="trunghieuCoffee">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="trunghieu Coffee">
+    <meta property="og:url" content="http://caphetrunghieu.tf/">
+    <meta property="og:description"
+          content="Quán cà phê tại An Giang, không gian rộng rãi, nhiều dịch vụ vui chơi giải trí cùng với các đồ uống ngon, mát lanh!!">
+    <meta property="og:keywords"
+          content="cà phê trung hiếu, trung hiếu cà phê, trung hiếu coffee, coffee trung hiếu, trunghieucoffee, trunghieu, trung hiếu, coffeetrunghieu, thcoffee">
+    <meta property="article:publisher" content="https://www.facebook.com/phung.mcdoin.988">
+    <meta property="article:author" content="https://www.facebook.com/phung.mcdoin.988">
+    <meta property="article:published_time" content="2021-12-20 16:38:53">
+    <meta property="article:modified_time" content="2021-12-20 16:38:53">
+    <link rel="canonical" href="http://caphetrunghieu.tf/">
+    <link rel="alternate" href="http://caphetrunghieu.tf/" hreflang="vi-vn">
+    <!-- Twitter -->
+    <meta name="twitter:site" content="Cà phê Trung Hiếu">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="http://caphetrunghieu.cf/">
+    <meta name="twitter:title" content="Cà phê Trung Hiếu">
+    <meta name="twitter:description" content="Quán cà phê tại An Giang, không gian rộng rãi, nhiều dịch vụ vui chơi giải trí cùng với các đồ uống ngon, mát lanh!!">
+    <meta name="twitter:keywords"
+          content="cà phê trung hiếu, trung hiếu cà phê, trung hiếu coffee, coffee trung hiếu, trunghieucoffee, trunghieu, trung hiếu, coffeetrunghieu, thcoffee">
+    <meta name="twitter:image" content="https://files.fm/thumb_show.php?i=hxfny9gh3">
+    <meta name="twitter:image:alt" content="Cà phê Trung Hiếu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="icon" href="{% static 'home\img\intro\coffee.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="{% static 'toast/js/main.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'toast/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './store/css/grid.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './store/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static './store/css/store-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %} {% endblock %}">
+    <link rel="stylesheet" type="text/css" href="{% static './store/css/responsive.css' %}">
+    <title>{% block title %}
+        Sản phẩm
+    {% endblock %}</title>
+</head>
+<body>
+<div class="wrap-product">
+    <div id="toast">
+    </div>
+    <div class="sidebar">
+        <div title="Thu/phóng thanh tùy chọn" class="sidebar__logo-content">
+            <div class="icon">
+                <i class='bx bx-menu' id="btn-mobile"></i>
+            </div>
+        </div>
+
+        <ul class="sidebar__list">
+            <li title="Trở lại trang chủ" class="sidebar__item">
+                <a href="/" class="sidebar__link">
+                    <i class='logo-home bx bx-home'></i>
+                    <span class="sidebar__link-name">Trang chủ</span>
+                </a>
+                <span class="tooltip">Trang chủ</span>
+            </li>
+            <li class="sidebar__item">
+                <i class='bx bx-search'></i>
+                <form name="content__form-find" method="GET" action="{% url 'store:search' %}">
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Tìm Kiếm..." class="sidebar__item-input">
+                    <button type="submit"></button>
+                    <span class="tooltip">Tìm kiếm</span>
+                </form>
+            </li>
+            <li class="sidebar__item {% block product %} {% endblock %}">
+                <a href="{% url 'store:product_all' %}" class="sidebar__link">
+                    <i class='bx bx-coffee'></i>
+                    <span class="sidebar__link-name">Sản phẩm</span>
+                </a>
+                <div class="sidebar__category">
+                    <ul class="sidebar__category--list">
+                        <li title="Xem tất cả sản phẩm" class="sidebar__category--item">
+                            <a href="{% url 'store:product_all' %}" class="sidebar__category-link">Tất cả</a>
+                        </li>
+                        {% for category in categories %}
+                            <li title="Xem sản phẩm của {{ category.name|title }}" class="sidebar__category--item">
+                                <a href="{{ category.get_absolute_url }}"
+                                   class="sidebar__category-link">{{ category.name|title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <span class="tooltip">Sản phẩm</span>
+            </li>
+            <li title="Giỏ hàng của bạn hiện đang có {{ basket|length }} sản phẩm"
+                class="sidebar__item {% block basket %} {% endblock %}">
+                <a href="{% url 'basket:basket_summary' %}" class="sidebar__link">
+                    {% with total_qty=basket|length %}
+                        <span id="cart-quantity__num" class="cart-quantity__num">
+                            {% if total_qty > 0 %}
+                                {{ total_qty }}
+                            {% else %}
+                                0
+                            {% endif %}
+                            </span>
+                    {% endwith %}
+                    <i class='cart-quantity bx bx-cart'></i>
+
+                    <span class="sidebar__link-name">Giỏ hàng</span>
+                </a>
+                <span class="tooltip">Giỏ hàng</span>
+            </li>
+            <li title="Quản lí tài khoản {{ request.user.name }}"
+                class="sidebar__item {% block dashboard %} {% endblock %}">
+                <a href="{% url 'account:dashboard' %}" class="sidebar__link">
+                    <i class='bx bxs-user-account'></i>
+                    <span class="sidebar__link-name">Tài Khoản</span>
+                </a>
+                <span class="tooltip">Tài Khoản</span>
+            </li>
+        </ul>
+        <div class="sidebar__profile-content">
+            <div class="profile-content">
+                <div class="profile-content__name">
+                    <p>Hi, <span>
+                    {% if user.is_authenticated %}
+                        {{ request.user.name }}
+                    {% else %}
+                        Đăng nhập
+                    {% endif %}
+                </span></p>
+                </div>
+                <div class="profile-content__sub">
+                    Tài khoản &amp; Danh sách
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+                <a title="Đăng xuất" href="{% url 'account:logout' %}" class="log-btn sidebar__link">
+                    <i class='bx bx-log-out' id="log-out"></i>
+                </a>
+            {% else %}
+                <a title="Đăng nhập" href="{% url 'account:login' %}" class="log-btn sidebar__link">
+                    <i id="log-in" class='bx bx-log-in'></i>
+                </a>
+            {% endif %}
+            <ul class="sidebar__profile-content--list">
+                <h6 class="sidebar__profile-content--title">My Account</h6>
+                <li class="sidebar__profile-content--item">
+                    <a href="{% url "account:dashboard" %}" class="sidebar__profile-content-link">Tài khoản của bạn</a>
+                </li>
+                <li class="sidebar__profile-content--item">
+                    <a href="#" class="sidebar__profile-content-link">Đơn đặt hàng</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="banner">
+        <h2 class="banner__title">Trung Hiếu Coffee</h2>
+        <h2 class="banner__title">Trung Hiếu Coffee</h2>
+    </div>
+    <div class="body">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <footer class="footer">
+    </footer>
+    <nav class="nav_bottom">
+        <a href="{% url 'store:index' %}" class="nav_bottom__link">
+            <i class='nav_bottom__icon logo-home bx bx-home'></i>
+        </a>
+        <div class="nav_bottom__link {% block product_mobile %} {% endblock %}">
+            <i class='nav_bottom__icon bx bx-coffee'></i>
+            <ul class="nav_bottom__category--list">
+                <li class="nav_bottom__category--item">
+                    <a href="{% url 'store:product_all' %}" class="nav_bottom__category-link">Tất cả</a>
+                </li>
+                {% for category in categories %}
+                    <li class="nav_bottom__category--item">
+                        <a href="{{ category.get_absolute_url }}"
+                           class="nav_bottom__category-link">{{ category.name|title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="nav_bottom__link {% block search_mobile %} {% endblock %}">
+            <i class='nav_bottom__icon bx bx-search'></i>
+            <form name="nav-bottom__form-find" method="GET" action="{% url 'store:search' %}"
+                  class="nav-bottom__form-find"
+                  content='text/html; charset=UTF-8'>
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="&#x270e; Nhập từ khóa cần tìm"
+                       class="nav-bottom__input-form-find"/>
+                <button type="submit" class="nav-bottom__btn-find"><i class='bx bx-search-alt-2'></i></button>
+            </form>
+        </div>
+        <a href="{% url 'basket:basket_summary' %}" class="nav_bottom__link {% block basket_mobile %}{% endblock %}">
+            <i class='nav_bottom__icon cart-quantity bx bx-cart'></i>
+            <div class="nav_bottom-basket">
+                {% with total_qty=basket|length %}
+                    <span id="mobile_cart-quantity__num" class="cart-quantity__num1">
+                            {% if total_qty > 0 %}
+                                {{ total_qty }}
+                            {% else %}
+                                0
+                            {% endif %}
+                    </span>
+                {% endwith %}
+            </div>
+        </a>
+        <div class="nav_bottom__link {% block acc_mobile %}{% endblock %}">
+            <i class='nav_bottom__icon bx bxs-user-account'></i>
+            <ul class="nav_bottom-acc__list">
+                <li class="nav_bottom-acc__item">
+                    <a href="{% url 'account:dashboard' %}" class="nav_bottom-acc__link">Tài
+                        khoản {{ request.user.name }}</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav_bottom-acc__item">
+                        <a href="{% url 'account:logout' %}" class="nav_bottom-acc__link">Đăng xuất</a>
+                    </li>
+                {% else %}
+                    <li class="nav_bottom-acc__item">
+                        <a href="{% url 'account:login' %}" class="nav_bottom-acc__link"> Đăng nhập</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    function myFunction(imgs) {
+        // Get the expanded image
+        var expandImg = document.getElementById("expandedImg");
+        // Get the image text
+        var imgText = document.getElementById("imgtext");
+        // Use the same src in the expanded image as the image being clicked on from the grid
+        expandImg.src = imgs.src;
+        // Use the value of the alt attribute of the clickable image as text inside the expanded image
+        imgText.innerHTML = imgs.alt;
+        // Show the container element (hidden with CSS)
+        expandImg.parentElement.style.display = "block";
+    }
+</script>
+
+<script src="{% static 'store/js/main.js' %}"></script>
+</body>
+</html>

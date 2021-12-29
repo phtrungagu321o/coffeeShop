@@ -1,0 +1,125 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block title %}
+    Góp ý đơn hàng
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block dashboard %}
+    sidebar__item-active
+{% endblock %}
+{% block content %}
+    <style>
+        #id_Problem {
+            width: 100%;
+            height: 180px;
+            margin: 10px;
+            padding: 10px;
+            font-size: 1.6rem;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid var(--white-color);
+            resize: none;
+            color: var(--primary-color);
+        }
+    </style>
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <h1>Đặt vấn đề cho đơn hàng</h1>
+                    <p>Nơi bạn có thể <span>góp ý các vấn đề</span> cho đơn hàng của bạn</p>
+                </div>
+                {% if messages %}
+                    <div class="log__alert-successfully" role="alert">
+                        {% for message in messages %}
+                            {{ message|safe }}
+                            <a href="{% url 'account:wishlist' %}" class="alert-link">tại đây</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% for order in orders %}
+                    <div class="basket__price-top">
+                        <div class="row">
+                            <div class="col l-6 m-6 c-12">
+                                <div class="basket__select">
+                                    <p>Mã đơn hàng:
+                                    <p style="color:var(--border-color);"> {{ order.order_key }}</p></p>
+                                    <p>| {{ order.created }} |</p>
+                                    <span>Vận chuyển đến <i class='bx bx-chevron-down'></i>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-menu__item">{{ order.full_name }}</li>
+                                            <li class="dropdown-menu__item">{{ order.address1 }}</li>
+                                            <li class="dropdown-menu__item">{{ order.address2 }}</li>
+                                            <li class="dropdown-menu__item">{{ order.post_code }}</li>
+                                        </ul>
+                                        </span>
+
+                                </div>
+                            </div>
+                            <div class="col l-6 m-6 c-12">
+                                <div class="basket__total-price">
+                                    <p>Tổng tiền đơn hàng: <span
+                                            id="basket-totalPrice__sub">{{ order.total_paid }} Đ</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="basket-wrapper">
+                        <div class="row">
+                            {% for item in order.items.all %}
+                                <div class="col l-7 m-12 c-12">
+                                    <div class="basket__product">
+                                        <div class="row">
+                                            <div class="col l-4 m-4 c-12">
+                                                <div class="basket__img">
+                                                    {% for image in item.product.product_image.all %}
+                                                        {% if image.is_feature %}
+                                                            <img src="{{ image.image.url }}"
+                                                                 alt="{{ image.image.alt_text }}"
+                                                                 class="section-product__header-img">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="col l-8 m-8 c-12">
+                                                <div class="basket__info">
+                                                    <div class="basket__info-name">
+                                                        <a class="basket__info-link"
+                                                           href="{{ item.product.get_absolute_url }}">
+                                                            <p>{{ item.product|title }}</p></a>
+                                                    </div>
+                                                    <div class="basket__shell">
+                                                        <div class="basket__info-quantityArea">
+                                                            <label for="select">Số lượng:
+                                                                <span>{{ item.quantity }}</span> </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col l-5 m-12 c-12">
+                                <h1>Vấn đề của bạn</h1>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <textarea name="problem" id="id_Problem" cols="30" rows="10"></textarea>
+                                    <button type="submit" name="submit" class="btn btn-black btn-animate">Gửi</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

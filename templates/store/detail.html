@@ -1,0 +1,374 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'store/css/product-detail.css' %}
+{% endblock %}
+{% load social_share %}
+{% load static %}
+{% block title %}
+    {% if product %}
+        {{ product.title }}
+    {% else %}
+        Sản phẩm
+    {% endif %}
+{% endblock %}
+{% block product %}
+    sidebar__item-active
+{% endblock %}
+{% block product_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block content %}
+    <div class="body-detail">
+        <div class="container">
+            <div class="grid">
+                <div class="detail-wrapper">
+                    {% if messages %}
+                        <div class="log__alert-successfully" role="alert">
+                            {% for message in messages %}
+                                {{ message|safe }}
+                                <a href="{% url 'account:wishlist' %}" class="alert-link">danh sách yêu thích của
+                                    bạn</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col l-7 m-12 c-12">
+                            <div class="detail-left">
+                                <div class="detail-left__title">
+                                    <p class="detail-left__name">{{ product }}</p>
+                                </div>
+                                <div class="row">
+                                    {% for image in product.product_image.all %}
+                                        {#                                        {% if image.is_feature %}#}
+                                        {#                                            <div class="col l-12 m-12 c-12 detail-left__imgArea">#}
+                                        {#                                            <img id="myImg" src="{{ image.image.url }}" alt="{{ image.image.alt_text }}"#}
+                                        {#                                                     class="detail-left__img" >#}
+                                        {#                                            </div>#}
+                                        {#                                        {% else %}#}
+                                        {#                                            <div class="col l-3 m-0 c-0 detail-left__imgArea">#}
+                                        {#                                                <img src="{{ image.image.url }}"#}
+                                        {#                                                     alt="{{ image.image.alt_text }}"#}
+                                        {#                                                     alt="hình sản phẩm"#}
+                                        {#                                                     class="detail-left__img-sub">#}
+                                        {#                                            </div>#}
+                                        {#                                        {% endif %}#}
+                                        {% if image.is_feature %}
+                                            <div class="col l-12 m-12 c-12 detail-left__imgArea">
+                                                <img id="myImg" src="{{ image.image.url }}"
+                                                     alt="{{ image.image.alt_text }}"
+                                                     class="detail-left__img">
+                                                <div class="container-img">
+                                                    <!-- Expanded image -->
+                                                    <img id="expandedImg" src="{{ image.image.url }}"
+                                                         alt="{{ image.image.alt_text }}" class="detail-left__img">
+                                                    <!-- Image text -->
+                                                    <div id="imgtext"></div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        <div class="col l-3 m-0 c-0 detail-left__imgArea">
+                                            <img src="{{ image.image.url }}"
+                                                 alt="{{ image.image.alt_text }}"
+                                                 onclick="myFunction(this);" class="detail-left__img-sub">
+                                        </div>
+
+                                    {% endfor %}
+                                </div>
+                                <div class="detail-left__socials">
+                                    {% post_to_facebook p.get_absolute_url "<i class='container__left-link bx bxl-facebook-circle'></i>" %}
+                                    {% post_to_twitter "Sản phẩm: {{product.title}} {{ image.image.url }}. Mua ngay! Tại đây: " p.get_absolute_url "<i class='container__left-link bx bxl-twitter'></i>" %}
+                                    {% send_email object.title "New Song: {{object.title}}. Check it out!" p.get_absolute_url "<i class='container__left-link bx bx-mail-send' ></i>" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l-5 m-12 c-12">
+                            <div class="detail-right">
+                                <div class="detail-right__numArea">
+                                    <div class="detail-right__numArea-price">
+                                        <p>{{ product.regular_price }} Đ</p>
+                                        <span>Không phụ phí</span>
+                                    </div>
+                                    <div class="detail-right__numArea-quantity">
+                                        <label for="select">Số lượng</label>
+                                        <select id="select">
+                                            {% for item in basket %}
+                                                {% if item.product == product %}
+                                                    <option hidden
+                                                            selected>{{ item.qty }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="detail-right__content">
+                                    <span>Mô tả</span>
+                                    <p>{{ product.description }}</p>
+                                </div>
+                                <div class="detail-right__btn-add">
+                                    <button onclick="showSuccessToastLoadProDuct()" type="button" id="pay-button"
+                                            value="{{ product.id }}"
+                                            class="container__right-btn btn btn-white btn-animate">Mua Ngay
+                                    </button>
+                                    <div class="detail-right__btn-group">
+                                        <button onclick="showSuccessToastAddProDuct()" type="button" id="add-button"
+                                                value="{{ product.id }}"
+                                                class="container__right-btn btn btn-white btn-animate">Thêm vào giỏ hàng
+                                        </button>
+                                        <a href="{% url 'account:user_wishlist' product.id %}" type="button"
+                                           id="add-like"
+                                           class="container__right-btn btn btn-cf btn-animate">
+                                            {% if product in wishlist %}
+                                                Xóa khỏi yêu thích
+                                            {% else %}
+                                                Thêm vào yêu thích
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-detail">
+        <div class="container">
+            <div class="grid">
+                <div class="section-product__title">
+                    <p class="section-product__title-text">Có thể bạn thích</p>
+                </div>
+                <div class="row">
+                    {% for p in products %}
+                        {% if product.slug != p.slug %}
+                            {% for image in p.product_image.all %}
+                                {% if image.is_feature %}
+                                    {% if display == 1 %}
+                                        <div class="col l-4 m-6 c-12">
+                                            <div class="product__wrapper">
+                                                <div class="section-product__wrap">
+                                                    <div class="section-product__side section-product__side--font">
+                                                        <div class="section-product__header">
+                                                            <img src="{{ image.image.url }}" alt="ảnh cà phê"
+                                                                 class="section-product__header-img">
+                                                        </div>
+                                                        <div class="section-product__info">
+                                                            <p class="section-product__name">{{ p.title }}</p>
+                                                            <p class="section-product__price">{{ p.regular_price }}
+                                                                Đ</p>
+                                                        </div>
+                                                        {% if p in wishlist %}
+                                                            <div class="section-product__favorite">
+                                                                <i class='bx bx-check'></i>
+                                                                <span>Yêu thích</span>
+                                                            </div>
+                                                        {% endif %}
+                                                        <span class="section-product__new">New</span>
+                                                    </div>
+                                                    <div class="section-product__side section-product__side--back">
+                                                        <p class="section-product__name--back">{{ p.title }}</p>
+                                                        <hr/>
+                                                        <p class="section-product__side--back__ingredient">Thành phần:
+                                                            <span> {{ p.description }}</span></p>
+                                                        <div class="section-product__side--back__socials-share">
+                                                            {% post_to_facebook p.get_absolute_url "<i class='section-product__side--back-icon section-product__side--back__like bx bx-share-alt'></i>" %}
+                                                            {% if p in wishlist %}
+                                                                <a href="{% url 'account:user_wishlist' p.id %}"><i
+                                                                        class='section-product__side--back-icon section-product__side--back__liked bx bxs-heart'></i></a>
+                                                            {% else %}
+                                                                <a href="{% url 'account:user_wishlist' p.id %}"><i
+                                                                        class='section-product__side--back-icon section-product__side--back__like bx bx-heart'></i></a>
+                                                            {% endif %}
+                                                        </div>
+                                                        <p class="section-product__price--back">{{ p.regular_price }}
+                                                            Đ</p>
+                                                        <a class="section-product__btn btn btn-white btn-animate"
+                                                           href="{{ p.get_absolute_url }}">Mua</a>
+                                                        <div class="section-product__side--back__shipping">
+                                                            <div class="section-product__side--back__time">
+                                                                <i class='bx bx-timer'></i>
+                                                                <p>Đặt online giao tận nhà ĐÚNG GIỜ</p>
+                                                            </div>
+                                                            <div class="section-product__side--back__report">
+                                                                <i class='bx bx-podcast'></i>
+                                                                <p>Bạn có thể báo cáo/khiếu nại <a href="">tại đây</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="col l-4 m-6 c-12">
+                                            <div class="product__wrapper">
+                                                <div class="card">
+                                                    <div class="imgBox">
+                                                        <a style="text-decoration: none;"
+                                                           href="{{ p.get_absolute_url }}">
+                                                            <img title="Hình ảnh của sản phẩm"
+                                                                 src="{{ image.image.url }}"
+                                                                 alt="products" class="mouse">
+                                                        </a>
+                                                    </div>
+                                                    <div class="card-fav">
+                                                        <div title="Số lượng món cần mua"
+                                                             class="basic__numArea-quantity">
+                                                            <label for="select{{ p.id }}">Số lượng</label>
+                                                            <select id="select{{ p.id }}">
+                                                                {% for item in basket %}
+                                                                    {% if item.product == p %}
+                                                                        <option hidden
+                                                                                selected>{{ item.qty }}</option>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                            </select>
+                                                        </div>
+                                                        {% post_to_facebook p.get_absolute_url "<i title='Chia sẻ thông tin sản phẩm qua Facebook' class='card-fav__share bx bx-share-alt'></i>" %}
+                                                        {% if p in wishlist %}
+                                                            <a title="Xóa khỏi danh sách yêu thích của bạn"
+                                                               href="{% url 'account:user_wishlist' p.id %}"><i
+                                                                    class='card-fav__liked bx bxs-heart'></i></a>
+                                                        {% else %}
+                                                            <a title="Thêm vào danh sách yêu thích của bạn"
+                                                               href="{% url 'account:user_wishlist' p.id %}"><i
+                                                                    class='card-fav__like bx bx-heart'></i></a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="contentBox">
+                                                        <h3 title="Tên sản phẩm">{{ p.title }}</h3>
+                                                        <h2 title="Giá sản phẩm"
+                                                            class="price">{{ p.regular_price }}<small>VND
+                                                            {% for item in basket %}
+                                                                {% if item.product == p %}
+                                                                    <span title="Số lượng của món bạn đã đặt"
+                                                                          id="price_quantity{{ p.id }}"
+                                                                          class="price_quantity">
+                                                                        x{{ item.qty }}
+                                                        </span>
+                                                                {% endif %}
+                                                            {% endfor %}</small>
+                                                        </h2>
+                                                        <button title="Đợi gì nữa!!!!! BẤM ĐI ^^"
+                                                                onclick="showSuccessToastAddProDuct()" type="button"
+                                                                id="add-button{{ p.id }}"
+                                                                value='{{ p.id }}'
+                                                                class="buy btn btn-white btn-animate">Mua Ngay
+                                                        </button>
+                                                        <script>
+                                                            $(document).on('click', '#add-button{{ p.id }}', function (e) {
+                                                                e.preventDefault();
+                                                                $.ajax({
+                                                                    type: 'POST',
+                                                                    url: '{% url "basket:basket_add" %}',
+                                                                    data: {
+                                                                        productid: $('#add-button{{ p.id }}').val(),
+                                                                        productqty: $('#select{{ p.id }} option:selected').text(),
+                                                                        csrfmiddlewaretoken: "{{csrf_token}}",
+                                                                        action: 'post'
+                                                                    },
+                                                                    success: function (json) {
+                                                                        if (json.reload == 1)
+                                                                            location.reload();
+                                                                        document.getElementById('cart-quantity__num').innerHTML = json.qty
+                                                                        document.getElementById('mobile_cart-quantity__num').innerHTML = json.qty
+                                                                        document.getElementById('price_quantity{{ p.id }}').innerHTML = "x" + json.product_qty
+                                                                    },
+                                                                    error: function (xhr, errmsg, err) {
+
+                                                                    }
+                                                                });
+                                                            })
+                                                        </script>
+                                                        {#                                                    <a href="{{ p.get_absolute_url }}"#}
+                                                        {#                                                       class="buy btn btn-white btn-animate">Mua</a>#}
+                                                    </div>
+                                                    {% if p in wishlist %}
+                                                        <div title="Sản phẩm này nằm trong danh sách yêu thích của bạn"
+                                                             class="section-product__favorite-ss">
+                                                            <i class='bx bx-check'></i>
+                                                            <span>Yêu thích</span>
+                                                        </div>
+                                                    {% endif %}
+                                                    <span class="section-product__new">New</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //basket
+
+        $(document).on('click', '#pay-button', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_add" %}',
+                data: {
+                    productid: $('#add-button').val(),
+                    productqty: $('#select option:selected').text(),
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById('mobile_cart-quantity__num').innerHTML = json.qty
+                    document.getElementById('cart-quantity__num').innerHTML = json.qty
+                    location.href = '{% url "basket:basket_summary" %}';
+                },
+                error: function (xhr, errmsg, err) {
+
+                }
+            });
+        })
+        $(document).on('click', '#add-button', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_add" %}',
+                data: {
+                    productid: $('#add-button').val(),
+                    productqty: $('#select option:selected').text(),
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById('mobile_cart-quantity__num').innerHTML = json.qty
+                    document.getElementById('cart-quantity__num').innerHTML = json.qty
+                },
+                error: function (xhr, errmsg, err) {
+
+                }
+            });
+        })
+    </script>
+{% endblock %}

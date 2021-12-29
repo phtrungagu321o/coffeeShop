@@ -1,0 +1,16 @@
+py manage.py makemigrations --check
+
+
+# Migrations
+python manage.py showmigrations
+
+# PayPal
+pip install paypal-checkout-serversdk
+
+# Session 
+from django.contrib.sessions.models import Session
+s = Session.objects.get(pk='tygkjrt7rallacvjssoetpraudq3d5bm')
+s.get_decoded()
+
+py -m venv venv
+python -m pip install --upgrade pip

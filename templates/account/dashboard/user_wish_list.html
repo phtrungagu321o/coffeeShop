@@ -1,0 +1,81 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block title %}Danh sách yêu thích{% endblock %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block dashboard %}
+    sidebar__item-active
+{% endblock %}
+{% block content %}
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <div>
+                        <h1>Danh sách yêu thích của bạn</h1>
+                        <p>Xem tất cả các <span>sản phẩm yêu thích</span> của bạn</p>
+                    </div>
+                </div>
+                {% if messages %}
+                    <div class="log__alert-successfully" role="alert">
+                        {% for message in messages %}
+                            {{ message|safe }}
+                            <a href="{% url 'account:wishlist' %}" class="alert-link">danh sách yêu thích của
+                        bạn</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if wishlist %}
+                    {% for product in wishlist %}
+                        <div class="basket-wrapper">
+                            <div class="row">
+                                <div class="col l-12 m-12 c-12">
+                                    <div data-index="{{ product.id }}" class="basket__product">
+                                        <div class="row">
+                                            <div class="col l-3 m-5 c-12">
+                                                <div class="basket__img">
+                                                    {% for image in product.product_image.all %}
+                                                        {% if image.is_feature %}
+                                                            <img src="{{ image.image.url }}"
+                                                                 alt="{{ image.image.alt_text }}"
+                                                                 class="section-product__header-img">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="col l-9 m-7 c-12">
+                                                <div class="basket__info">
+                                                    <div class="basket__info-name basket__info-link--wish">
+                                                        <a class="basket__info-link "
+                                                           href="{{ product.get_absolute_url }}">
+                                                            <p>{{ product.title }}</p></a>
+                                                    </div>
+                                                    <p class="basket__info-des"> {{ product.description }}</p>
+                                                    <p class="basket__info-price">{{ product.regular_price }} Đ</p>
+                                                    <a href="{{ product.get_absolute_url }}"
+                                                       class="basket__info-btn btn btn-white btn-animate">Mua ngay</a>
+                                                    <a href="{% url 'account:user_wishlist' product.id %}"
+                                                       class="btn btn-black btn-animate">Xóa</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h1>Chưa có sản phẩm nào được thêm vào danh sách yêu thích của bạn <a
+                            href="{% url 'store:product_all' %}">Tìm thêm</a></h1>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "product_base.html" %}
+{% block title %}Chỉnh sửa thông tin tài khoản{% endblock %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'account/css/log.css' %}
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block dashboard %}
+    sidebar__item-active
+{% endblock %}
+{% block content %}
+
+    <style>
+        .text-muted {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .log__title-delete::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 3px;
+            width: 60px;
+            background-color: var(--primary-color);
+        }
+
+        .log__title::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 3px;
+            width: 60px;
+            background-color: var(--primary-color);
+        }
+
+        .log__title-delete {
+            margin-top: 40px;
+            width: 100%;
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        .log__title-delete h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.4em;
+            /*text-transform: uppercase;*/
+            color: var(--border-color);
+        }
+
+        .body-log {
+            height: 100vh;
+        }
+
+        .log__login {
+            margin-bottom: 10px;
+        }
+
+
+    </style>
+    <div class="body-log">
+        <div class="log__wrapper">
+            <div class="log__title">
+                <h1>Thay đổi thông tin</h1>
+                <p>Bạn có thể chỉnh sửa tài khoản của mình bằng cách sử dụng biểu mẫu sau:</p>
+            </div>
+            <form action="." method="post" class="log__form">
+                {% if user_form.is_valid %}
+                    <div class="log__successfully" role="alert">
+                        Thông tin chi tiết được cập nhật thành công!
+                    </div>
+                    <p class="log__login">
+                        <a href="{% url "account:dashboard" %}">Quay lại Trang tổng quan</a>
+                    </p>
+                {% else %}
+                {% endif %}
+
+                {% if form.errors %}
+                    <div class="log__error" role="alert">
+                        Lỗi. Vui lòng thử lại!
+                    </div>
+                {% endif %}
+
+                {% csrf_token %}
+                <label for="form-email" class="log__form-label">{{ user_form.email.label }}<span
+                        class="text-muted">
+                                          (Không thể thay đổi)</span></label>
+                {{ user_form.email }}
+                <label for="form-firstname" class="log__form-label">{{ user_form.name.label }}</label>
+                {{ user_form.name }}
+
+                <div class="log__btn">
+                    <button class="log__bnt-submit btn btn-white btn-animate" type="submit"
+                    >Lưu thay đổi
+                    </button>
+                </div>
+            </form>
+            <hr>
+            <div class="log__title-delete">
+                <h1>Xóa tài khoản</h1>
+                <p>Bạn có chắc rằng bạn muốn xóa tài khoản của bạn?</p>
+            </div>
+            <form action="{% url 'account:delete_user' %}" method="post" class="log__form">
+                {% csrf_token %}
+                <button class="log__bnt-submit btn btn-red btn-animate" type="submit"
+                        role="button"
+                        onclick="return confirm('Bạn có thực sự muốn xóa tài khoản?')">Xóa
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

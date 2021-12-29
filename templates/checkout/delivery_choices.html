@@ -1,0 +1,96 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block title %}Lựa chọn phương thức giao hàng{% endblock %}
+{% block content %}
+
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <h1>Cài đặt giao hàng</h1>
+                    <p>Lựa chọn <span>cách thức giao hàng</span> dành cho bạn</p>
+                </div>
+                {% if messages %}
+                    <div class="log__alert-error" alert-{{ message.tags }} role="alert">
+                        {% for message in messages %}
+                            {{ message|safe }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="row">
+                    {% if deliveryoptions|length == 0 %}
+                    <div class="col l-12 m-12 c-12">Không có tùy chọn giao hàng <a href="{% url 'store:index' %}">Cửa hàng</a>
+                    </div>
+                    {% else %}
+                    <div class="col l-7 m-12 c-12">
+                    {% for option in deliveryoptions %}
+                        <label class="delivery_left" for="delivery{{ option.id }}" >
+                            <div class="delivery_left-wrapper" data-index="{{option.id}}">
+                                <div class="delivery_left-icon">
+                                    <i class='bx bxs-truck'></i>
+                                </div>
+                                <div class="delivery_left-content">
+                                    <p class="delivery_left-name">{{option.delivery_name}}</p>
+                                    <p class="delivery_left-subname">Đơn đặt hàng của bạn sẽ được giao trong vòng {{option.delivery_timeframe}}</p>
+                                </div>
+                                <input class="delivery_left-check" type="radio" name="deliveryOption" id="delivery{{ option.id }}" value="{{ option.id }}">
+                            </div>
+                        </label>
+                    {% endfor %}
+                    </div>
+
+                    <div class="col l-5 m-12 c-12">
+                        <div class="delivery_right-wrapper">
+                            <div class="delivery_right-highlight">
+                                <div class="delivery_right-highlight-sub">Tổng tiền phụ:</div>
+                                <div class="delivery_right-highlight-text"><span
+                                        id="sub_total">{{ basket.get_subtotal_price }}</span><span> Đ</span>
+                                </div>
+                            </div>
+                            <div class="delivery_right-highlight">
+                                <div class="delivery_right-highlight-sub">Chi phí giao hàng:</div>
+                                <div class="delivery_right-highlight-text"><span
+                                        id="delivery_price">{{ basket.get_delivery_price }}</span><span> Đ</span>
+                                </div>
+                            </div>
+                            <div class="delivery_right-highlight">
+                                <div class="delivery_right-highlight-sub">Tổng tiền:</div>
+                                <div class="delivery_right-highlight-text"><span
+                                        id="total">{{ basket.get_total_price }}</span><span> Đ</span>
+                                </div>
+                            </div>
+                            <a role="button" href="{% url "checkout:delivery_address" %}"
+                               class="btn btn-white btn-animate"
+                               type="button">Tiếp tục</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('input[type=radio][name=deliveryOption]').on('change', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'checkout:basket_update_delivery' %}',
+                data: {
+                    deliveryoption: $(this).val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post',
+                },
+                success: function (json) {
+                    document.getElementById('total').innerHTML = json.total;
+                    document.getElementById('delivery_price').innerHTML = json.delivery_price;
+                },
+                error: function (xhr, errmsg, err) {
+                },
+            });
+        });
+    </script>
+{% endblock %}

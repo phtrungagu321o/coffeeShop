@@ -1,0 +1,92 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block title %}Lựa chọn địa chỉ{% endblock %}
+{% block content %}
+
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <h1>Địa chỉ giao hàng</h1>
+                    <p>Vui lòng chọn <span>địa chỉ giao hàng</span> của bạn</p>
+                </div>
+                <div class="row">
+                    {% if addresses|length == 0 %}
+                        <div class="col l-12 m-12 c-12">Không có địa chỉ giao hàng. Thêm địa chỉ <a
+                                href="{% url 'account:add_address' %}">tại đây</a>
+                        </div>
+                    {% else %}
+                        <div class="col l-7 m-12 c-12">
+                            {% for address in addresses %}
+                                {% if not address.default %}
+                                    <h1 class="addresses__wrapper-title">Địa chỉ khác</h1>
+                                {% endif %}
+                                <div class="addresses__wrapper set">
+                                    <div class="addresses__body">
+                                        <p class="addresses__body-header">
+                                            {% if address.default %}
+                                                Mặc định
+                                            {% endif %}
+                                            &nbsp;
+                                        </p>
+                                        <ul class="addresses__body-list">
+                                            <li class="addresses__body-item">
+                                                <span>Tên đầy đủ: </span>{{ address.full_name }}</li>
+                                            <li class="addresses__body-item">
+                                                <span>Địa chỉ 1: </span>{{ address.address_line }}</li>
+                                            <li class="addresses__body-item">
+                                                <span>Địa chỉ 2: </span>{{ address.address_line2 }}</li>
+                                            <li class="addresses__body-item">
+                                                <span>Nhận dạng: </span>{{ address.town_city }}</li>
+                                            <li class="addresses__body-item">
+                                                <span>Mã bưu điện </span>{{ address.postcode }}</li>
+                                            <li class="addresses__body-item">
+                                                <span>Số điện thoại: </span> {{ address.phone }}</li>
+                                        </ul>
+                                        <div class="addresses__body-footer">
+                                            <a href="{% url 'account:edit_address-delivery' address.id %}">Chỉnh
+                                                sửa</a><span>|</span>
+                                            {% if not address.default %}
+                                                <a href="{% url 'account:set_default' address.id %}"
+                                                   class="text-decoration-none">Mặc định</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col l-5 m-12 c-12">
+                            <div class="delivery_right-wrapper">
+                                <div class="delivery_right-highlight">
+                                    <div class="delivery_right-highlight-sub">Tổng tiền phụ:</div>
+                                    <div class="delivery_right-highlight-text"><span
+                                            id="sub_total">{{ basket.get_subtotal_price }}</span><span> Đ</span>
+                                    </div>
+                                </div>
+                                <div class="delivery_right-highlight">
+                                    <div class="delivery_right-highlight-sub">Chi phí giao hàng:</div>
+                                    <div class="delivery_right-highlight-text"><span
+                                            id="delivery_price">{{ basket.get_delivery_price }}</span><span> Đ</span>
+                                    </div>
+                                </div>
+                                <div class="delivery_right-highlight">
+                                    <div class="delivery_right-highlight-sub">Tổng tiền:</div>
+                                    <div class="delivery_right-highlight-text"><span
+                                            id="total">{{ basket.get_total_price }}</span><span> Đ</span>
+                                    </div>
+                                </div>
+                                <a role="button" href="{% url 'checkout:payment_selection' %}"
+                                   class="btn btn-white btn-animate"
+                                   type="button">Tiếp tục</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

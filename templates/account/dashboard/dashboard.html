@@ -1,0 +1,87 @@
+{% extends "product_base.html" %}
+{% load static %}
+{% block stylesheet %}
+    {% static 'basket/css/basket.css' %}
+{% endblock %}
+{% block title %}
+    Bản điều khiển
+{% endblock %}
+{% block dashboard %}
+    sidebar__item-active
+{% endblock %}
+{% block acc_mobile %}
+    nav_bottom__link--active
+{% endblock %}
+{% block content %}
+    <div class="body-basket">
+        <div class="grid">
+            <div class="container-basket">
+                <div class="basket__title">
+                    <div>
+                        <h1>Trang tổng quát</h1>
+                        <p>Quản lí các <span>đơn đặt hàng</span> và <span>chi tiết cá nhân</span> của bạn</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l-4 m-12 c-12">
+                        <a href="{% url 'account:user_orders' %}" role="button" class="basket__link">
+                            <div class="basket__link-icon">
+                                <i class='bx bx-gift'></i>
+                            </div>
+                            <div class="basket__link-content">
+                                <p class="basket__link-title">Đơn đặt hàng</p>
+                                <span class="basket__link-title-sub">Xem, theo dõi hoặc mua lại</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col l-4 m-12 c-12">
+                        <a href="{% url "account:edit_details" %}" role="button" class="basket__link">
+                            <div class="basket__link-icon">
+                                <i class='bx bx-briefcase-alt-2'></i>
+                            </div>
+                            <div class="basket__link-content">
+                                <p class="basket__link-title">Đăng nhập và Bảo mật</p>
+                                <span class="basket__link-title-sub">Chỉnh sửa đăng nhập, email</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col l-4 m-12 c-12">
+                        <a href="{% url 'account:addresses' %}" role="button" class="basket__link">
+                            <div class="basket__link-icon">
+                                <i class='bx bxs-truck'></i>
+                            </div>
+                            <div class="basket__link-content">
+                                <p class="basket__link-title">Địa chỉ của bạn</p>
+                                <span class="basket__link-title-sub">Chỉnh sửa địa chỉ mua sắm</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col l-4 m-12 c-12">
+                        <a href="{% url 'account:wishlist' %}" role="button" class="basket__link">
+                            <div class="basket__link-icon">
+                                <i class='bx bx-duplicate'></i>
+                            </div>
+                            <div class="basket__link-content">
+                                <p class="basket__link-title">Danh sách yêu thích</p>
+                                <span class="basket__link-title-sub">Xem danh sách yêu thích</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col l-4 m-12 c-12">
+                        <a href="{% url 'account:save_list' %}" role="button" class="basket__link">
+                            <div class="basket__link-icon">
+                                <i class="bx bx-cart"></i>
+                            </div>
+                            <div class="basket__link-content">
+                                <p class="basket__link-title">Vỏ hàng đã lưu</p>
+                                <span class="basket__link-title-sub">Xem lại vỏ hàng đã lưu trước đó</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
