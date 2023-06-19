@@ -1,4 +1,5 @@
 import json
+import os
 
 import torch
 from django.contrib.sites.shortcuts import get_current_site
@@ -79,7 +80,12 @@ def home(request):
         width += order.rating
         if order.isRate:
             count += 1
-    width = width / orders.count()
+    if orders.count() > 0:
+        width = width / orders.count()
+    else:
+    # Handle the case where orders count is zero
+    # You can set width to a default value or perform an alternative action
+        width = 0  # For example, setting width to 0
     start = width / 20
     print(start)
     print(width)
@@ -120,7 +126,13 @@ def home_img(request):
         width += order.rating
         if order.isRate:
             count += 1
-    width = width / orders.count()
+    if orders.count() > 0:
+        width = width / orders.count()
+    else:
+    # Handle the case where orders count is zero
+    # You can set width to a default value or perform an alternative action
+        width = 0  # For example, setting width to 0
+    
     start = width / 20
     form = ContactForm()
     if request.method == 'POST':
@@ -245,9 +257,9 @@ def search_img(request):
         try:
             label = parsed[0]['name']
             path_save = str('assets/home/img/exp/' + label)
-            results.save(path_save)
+            print(path_save)
+            results.save('assets/home/img/exp/' + label)
             path_save1 = str('home/img/exp/' + label + '/' + file_name)
-            print(path_save1)
             ms = ""
             mx = "Nếu không phải là "
         except:
